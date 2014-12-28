@@ -1,0 +1,71 @@
+$grid-gutter: if( global-variable-exists(grid-gutter), $grid-gutter, 20px );
+/*==============================================================================
+flag object
+
+Same as the media object but with vertical aligmnent
+http://csswizardry.com/2013/05/the-flag-object/
+
+Markup:
+<div class="b-flag {$modifiers}">
+   <div class="b-flag__figure">
+        <img src="http://placehold.it/150x150/bada55/000">
+   </div>
+   <div class="b-flag__body">
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, quae, quidem, nam, suscipit assumenda voluptates laudantium nobis totam blanditiis iste laboriosam voluptas sapiente amet laborum debitis dolore consectetur enim ducimus.</p>
+   </div>
+</div>
+
+.#{$namespace}flag--rev - filps the image to the right
+.#{$namespace}flag--top - aligns text to top
+.#{$namespace}flag--bottom - aligns text to bottom
+==============================================================================*/
+
+.#{$namespace}flag {
+    display: table;
+    width: 100%;
+}
+
+
+
+.#{$namespace}flag__figure,
+.#{$namespace}flag__body {
+    display: table-cell;
+    vertical-align: middle;
+
+    > :last-child,
+    > :last-child > :last-child {
+        margin-bottom: 0;
+    }
+
+    .#{$namespace}flag--top & {
+        vertical-align: top;
+    }
+
+    .#{$namespace}flag--bottom & {
+        vertical-align: bottom;
+    }
+}
+
+
+
+.#{$namespace}flag__figure {
+    @include rem(padding-right, $grid-gutter);
+
+    > img {
+        display: block;
+        max-width: none;
+    }
+
+    .#{$namespace}flag--rev & {
+        padding-right: 0;
+        @include rem(padding-left, $grid-gutter);
+    }
+}
+
+
+
+.#{$namespace}flag__body {
+    width: 100%;
+}
+
+
